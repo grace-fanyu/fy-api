@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/api-interface.iml" filepath="$PROJECT_DIR$/.idea/api-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fanyuapi-interface/fanyuapi-interface.iml" filepath="$PROJECT_DIR$/fanyuapi-interface/fanyuapi-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fanyui-client-sdk/fanyui-client-sdk.iml" filepath="$PROJECT_DIR$/fanyui-client-sdk/fanyui-client-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fanyui-gateway/fanyui-gateway.iml" filepath="$PROJECT_DIR$/fanyui-gateway/fanyui-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-init/springboot-init.iml" filepath="$PROJECT_DIR$/springboot-init/springboot-init.iml" />
+    </modules>
+  </component>
+</project>

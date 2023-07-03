@@ -1,0 +1,11 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+fanyui:
+  clint:
+    access-key: fanyu
+    secret-key: abcdefgh
+
+
