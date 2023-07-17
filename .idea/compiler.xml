@@ -13,12 +13,6 @@
         <module name="fanyui-client-sdk" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="fanyuapi-interface" target="1.8" />
-      <module name="fanyui-client-sdk" target="1.8" />
-      <module name="fanyui-gateway" target="1.8" />
-      <module name="springboot-init" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

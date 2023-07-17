@@ -17,9 +17,11 @@ class FanyuapiInterfaceApplicationTests {
 
 	@Test
 	void contextLoads() {
-		String result = fanyuiClient.getNameByGet("jinze");
-		String result2 = fanyuiClient.getNameByPost("jinze");
-		String result3 = fanyuiClient.getUserNameByPost(new User("jinze"));
+		String result = fanyuiClient.getNameByGet("fanyu");
+		String result2 = fanyuiClient.getNameByPost("fanyu");
+		User user = new User();
+		user.setUserName("fanyu");
+		String result3 = fanyuiClient.getUserNameByPost(user);
 		System.out.println(result);
 		System.out.println(result2);
 		System.out.println(result3);
