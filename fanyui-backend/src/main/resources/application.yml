@@ -1,0 +1,98 @@
+# 公共配置文件
+
+spring:
+  application:
+    name: fanyui-backend
+    cloud:
+      nacos:
+        discovery:
+          server-addr: 124.70.61.81:8848
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.70.61.81:3306/fyapi
+    username: root
+    password: 654321
+    hikari:
+      max-lifetime: 666666
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # session 失效时间（分钟）
+  session:
+    timeout: 86400
+    store-type: redis
+  # Redis 配置
+  redis:
+    database: 0
+    host: 124.70.61.81
+    port: 6379
+    password: 123456
+  # mail邮箱
+  mail:
+    # SMTP服务器（我用的是QQ邮箱的SMTP服务器地址，如果用的其它邮箱请另行百度搜索）
+    host: smtp.qq.com
+    # 发送验证码的邮箱（发件人的邮箱）
+    username: 1143725742@qq.com
+    # 授权码
+    password: wtwimwztyebshajb
+    # 编码
+    default-encoding: utf-8
+    # 其它参数
+    properties:
+      mail:
+        smtp:
+          # 如果是用SSL方式，需要配置如下属性,使用qq邮箱的话需要开启
+          ssl:
+            enable: true
+            required: true
+          # 邮件接收时间的限制，单位毫秒
+          timeout: 10000
+          # 连接时间的限制，单位毫秒
+          connection-timeout: 10000
+          # 邮件发送时间的限制，单位毫秒
+          write-timeout: 10000
+
+
+
+
+
+server:
+  address: 0.0.0.0
+  port: 7529
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
+      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
+# 仅供测试，实际应该根据登录用户获取对应的 ak，sk
+fanyui:
+  clint:
+    access-key: fanyu
+    secret-key: abcdefgh
+dubbo:
+  application:
+    name: dubbo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://124.70.61.81:8848
+#dubbo:
+#  # 配置元数据中心
+#  metadata-report:
+#    address: nacos://127.0.0.1:8848
+#    username: test
+#    password: 123456
+#    # 配置 namespace，有namespace需要指定namespace
+#    parameters:
+#      namespace: 88b66463-1685-40b3-ba9c-7b25e526dcfb
+#    # 配置 隔离组，有配置 group 的需要指定 group
+#    group: ucp

@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * fanyui 客户端配置
  * @author fanyu
- * @date 2023/05/26 19:20
  **/
 @Configuration
 @ConfigurationProperties("fanyui.client")

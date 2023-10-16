@@ -9,7 +9,18 @@
         <option value="$PROJECT_DIR$/fanyuapi-interface/pom.xml" />
         <option value="$PROJECT_DIR$/fanyui-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-init/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-common/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-common/primary-source/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-common/ear/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-backend/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-interface/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/fanyui-common/ear/pom.xml" />
+        <option value="$PROJECT_DIR$/fanyui-common/primary-source/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />

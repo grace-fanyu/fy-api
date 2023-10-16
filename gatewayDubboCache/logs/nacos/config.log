@@ -1,0 +1,193 @@
+2023-10-05 16:42:49.481 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [req-serv] nacos-server port:8848
+2023-10-05 16:42:49.482 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [http-client] connect timeout:1000
+2023-10-05 16:42:49.483 INFO [restartedMain:c.a.n.c.u.ParamUtil] PER_TASK_CONFIG_SIZE: 3000.0
+2023-10-05 16:42:49.499 INFO [restartedMain:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 16:42:49.502 INFO [restartedMain:c.a.n.c.c.i.LocalConfigInfoProcessor] LOCAL_SNAPSHOT_PATH:D:\data\Projects\JavaProjects\JavaProjects\api-interface/gatewayDubboCache\nacos\config
+2023-10-05 16:42:50.732 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [b20783a2-7f3f-4680-a108-75bc82a169dd_config-0] Connected,notify listen context...
+2023-10-05 16:42:50.768 INFO [restartedMain:c.a.n.c.c.i.Limiter] limitTime:5.0
+2023-10-05 16:42:58.292 INFO [restartedMain:c.a.n.c.c.i.CacheData] nacos.cache.data.init.snapshot = true 
+2023-10-05 16:42:58.292 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.migration+DUBBO_SERVICEDISCOVERY_MIGRATION
+2023-10-05 16:42:58.298 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.migration, group=DUBBO_SERVICEDISCOVERY_MIGRATION, cnt=1
+2023-10-05 16:42:58.402 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.configurators+dubbo
+2023-10-05 16:42:58.402 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:42:58.444 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router+dubbo
+2023-10-05 16:42:58.444 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:42:58.472 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.condition-router+dubbo
+2023-10-05 16:42:58.472 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.condition-router, group=dubbo, cnt=1
+2023-10-05 16:42:58.704 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.MESHAPPRULE+dubbo
+2023-10-05 16:42:58.704 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.MESHAPPRULE, group=dubbo, cnt=1
+2023-10-05 16:42:58.706 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.tag-router+dubbo
+2023-10-05 16:42:58.706 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.tag-router, group=dubbo, cnt=1
+2023-10-05 16:42:58.737 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators+dubbo
+2023-10-05 16:42:58.737 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:42:59.073 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService+mapping
+2023-10-05 16:42:59.073 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, cnt=1
+2023-10-05 16:42:59.253 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [d459bc22-6513-4e37-b288-e940570ab3a6_config-0] Connected,notify listen context...
+2023-10-05 16:42:59.288 INFO [restartedMain:c.a.n.c.c.u.JvmUtil] isMultiInstance:false
+2023-10-05 16:42:59.486 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-listener] time cost=0ms in ClientWorker, dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@7c04fa2e 
+2023-10-05 16:42:59.486 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-context] dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5
+2023-10-05 16:42:59.492 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-ok] dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@7c04fa2e ,cost=6 millis.
+2023-10-05 16:42:59.493 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:42:59.493 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:42:59.602 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:42:59.603 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:42:59.830 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService+mapping
+2023-10-05 16:42:59.830 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:42:59.864 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:42:59.864 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:42:59.969 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:42:59.969 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:43:00.056 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-context] dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5
+2023-10-05 16:43:00.056 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-listener] time cost=0ms in ClientWorker, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@2783cc0a 
+2023-10-05 16:43:00.057 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-ok] dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@2783cc0a ,cost=1 millis.
+2023-10-05 16:43:00.195 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService+mapping
+2023-10-05 16:43:00.195 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:43:00.333 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators+dubbo
+2023-10-05 16:43:00.333 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:43:00.420 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-listener] time cost=0ms in ClientWorker, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@663d68ab 
+2023-10-05 16:43:00.420 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-context] dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5
+2023-10-05 16:43:00.421 INFO [nacos.client.cachedata.internal.notifier:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [notify-ok] dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, md5=5d51513e5c5e57317a9933f2ac651ea5, listener=org.apache.dubbo.metadata.store.nacos.NacosMetadataReport$NacosConfigListener@663d68ab ,cost=1 millis.
+2023-10-05 16:47:55.487 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [req-serv] nacos-server port:8848
+2023-10-05 16:47:55.489 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [http-client] connect timeout:1000
+2023-10-05 16:47:55.490 INFO [restartedMain:c.a.n.c.u.ParamUtil] PER_TASK_CONFIG_SIZE: 3000.0
+2023-10-05 16:47:55.512 INFO [restartedMain:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 16:47:55.517 INFO [restartedMain:c.a.n.c.c.i.LocalConfigInfoProcessor] LOCAL_SNAPSHOT_PATH:D:\data\Projects\JavaProjects\JavaProjects\api-interface/gatewayDubboCache\nacos\config
+2023-10-05 16:47:56.900 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [c426eb32-c531-4970-9f90-1ef470897ac7_config-0] Connected,notify listen context...
+2023-10-05 16:47:56.927 INFO [restartedMain:c.a.n.c.c.i.Limiter] limitTime:5.0
+2023-10-05 16:48:04.565 INFO [restartedMain:c.a.n.c.c.i.CacheData] nacos.cache.data.init.snapshot = true 
+2023-10-05 16:48:04.566 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.migration+DUBBO_SERVICEDISCOVERY_MIGRATION
+2023-10-05 16:48:04.572 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.migration, group=DUBBO_SERVICEDISCOVERY_MIGRATION, cnt=1
+2023-10-05 16:48:04.667 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.configurators+dubbo
+2023-10-05 16:48:04.667 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:48:04.699 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router+dubbo
+2023-10-05 16:48:04.700 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:48:04.723 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.condition-router+dubbo
+2023-10-05 16:48:04.723 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.condition-router, group=dubbo, cnt=1
+2023-10-05 16:48:04.933 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.MESHAPPRULE+dubbo
+2023-10-05 16:48:04.933 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.MESHAPPRULE, group=dubbo, cnt=1
+2023-10-05 16:48:04.933 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.tag-router+dubbo
+2023-10-05 16:48:04.933 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.tag-router, group=dubbo, cnt=1
+2023-10-05 16:48:04.959 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators+dubbo
+2023-10-05 16:48:04.959 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:48:05.257 INFO [restartedMain:c.a.n.c.c.u.JvmUtil] isMultiInstance:false
+2023-10-05 16:48:05.257 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService+mapping
+2023-10-05 16:48:05.257 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, cnt=1
+2023-10-05 16:48:05.434 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [e401dab9-7f5a-4c79-880e-d99979529866_config-0] Connected,notify listen context...
+2023-10-05 16:48:05.649 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:48:05.649 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:48:05.750 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:48:05.750 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:48:05.975 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService+mapping
+2023-10-05 16:48:05.975 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:48:06.006 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:48:06.006 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:48:06.102 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:48:06.103 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:48:06.325 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService+mapping
+2023-10-05 16:48:06.326 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:48:06.438 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators+dubbo
+2023-10-05 16:48:06.438 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:48:20.500 INFO [Thread-2:c.a.n.c.a.r.i.CredentialWatcher] [null] CredentialWatcher is stopped
+2023-10-05 16:48:20.501 INFO [Thread-2:c.a.n.c.a.r.i.CredentialService] [null] CredentialService is freed
+2023-10-05 16:48:20.558 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 16:48:22.617 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] com.alibaba.nacos.client.config.impl.ClientWorker do shutdown begin
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.a.r.i.CredentialWatcher] [null] CredentialWatcher is stopped
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.a.r.i.CredentialService] [null] CredentialService is freed
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Trying to shutdown transport client com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient@5baa1ad3
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Trying to shutdown rpc client c426eb32-c531-4970-9f90-1ef470897ac7_config-0
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Remove rpc client c426eb32-c531-4970-9f90-1ef470897ac7_config-0
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Shutdown executor java.util.concurrent.ScheduledThreadPoolExecutor@30161a97[Running, pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 6]
+2023-10-05 16:48:22.618 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] com.alibaba.nacos.client.config.impl.ClientWorker do shutdown stop
+2023-10-05 16:49:36.205 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [req-serv] nacos-server port:8848
+2023-10-05 16:49:36.206 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [http-client] connect timeout:1000
+2023-10-05 16:49:36.206 INFO [restartedMain:c.a.n.c.u.ParamUtil] PER_TASK_CONFIG_SIZE: 3000.0
+2023-10-05 16:49:36.222 INFO [restartedMain:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 16:49:36.225 INFO [restartedMain:c.a.n.c.c.i.LocalConfigInfoProcessor] LOCAL_SNAPSHOT_PATH:D:\data\Projects\JavaProjects\JavaProjects\api-interface/gatewayDubboCache\nacos\config
+2023-10-05 16:49:37.440 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [5a0d55e3-60e6-40e2-a2d7-635378abfefb_config-0] Connected,notify listen context...
+2023-10-05 16:49:37.467 INFO [restartedMain:c.a.n.c.c.i.Limiter] limitTime:5.0
+2023-10-05 16:49:45.185 INFO [restartedMain:c.a.n.c.c.i.CacheData] nacos.cache.data.init.snapshot = true 
+2023-10-05 16:49:45.185 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.migration+DUBBO_SERVICEDISCOVERY_MIGRATION
+2023-10-05 16:49:45.191 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.migration, group=DUBBO_SERVICEDISCOVERY_MIGRATION, cnt=1
+2023-10-05 16:49:45.292 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.configurators+dubbo
+2023-10-05 16:49:45.292 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:49:45.328 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router+dubbo
+2023-10-05 16:49:45.328 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:49:45.353 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.condition-router+dubbo
+2023-10-05 16:49:45.353 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.condition-router, group=dubbo, cnt=1
+2023-10-05 16:49:45.568 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.MESHAPPRULE+dubbo
+2023-10-05 16:49:45.569 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.MESHAPPRULE, group=dubbo, cnt=1
+2023-10-05 16:49:45.571 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.tag-router+dubbo
+2023-10-05 16:49:45.571 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.tag-router, group=dubbo, cnt=1
+2023-10-05 16:49:45.608 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators+dubbo
+2023-10-05 16:49:45.608 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:49:45.934 INFO [restartedMain:c.a.n.c.c.u.JvmUtil] isMultiInstance:false
+2023-10-05 16:49:45.934 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService+mapping
+2023-10-05 16:49:45.934 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, cnt=1
+2023-10-05 16:49:46.122 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [d9cdc264-7594-41bc-be4c-edab14a695a9_config-0] Connected,notify listen context...
+2023-10-05 16:49:46.351 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:49:46.351 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:49:46.466 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:49:46.466 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:49:46.694 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService+mapping
+2023-10-05 16:49:46.695 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:49:46.730 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:49:46.730 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:49:46.837 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:49:46.837 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:49:47.062 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService+mapping
+2023-10-05 16:49:47.063 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:49:47.207 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators+dubbo
+2023-10-05 16:49:47.207 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:54:44.270 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [req-serv] nacos-server port:8848
+2023-10-05 16:54:44.271 INFO [restartedMain:c.a.n.c.u.ParamUtil] [settings] [http-client] connect timeout:1000
+2023-10-05 16:54:44.272 INFO [restartedMain:c.a.n.c.u.ParamUtil] PER_TASK_CONFIG_SIZE: 3000.0
+2023-10-05 16:54:44.288 INFO [restartedMain:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 16:54:44.292 INFO [restartedMain:c.a.n.c.c.i.LocalConfigInfoProcessor] LOCAL_SNAPSHOT_PATH:D:\data\Projects\JavaProjects\JavaProjects\api-interface/gatewayDubboCache\nacos\config
+2023-10-05 16:54:45.524 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [9ad42081-ec5e-4604-a309-bb79d023ca6b_config-0] Connected,notify listen context...
+2023-10-05 16:54:45.555 INFO [restartedMain:c.a.n.c.c.i.Limiter] limitTime:5.0
+2023-10-05 16:54:53.058 INFO [restartedMain:c.a.n.c.c.i.CacheData] nacos.cache.data.init.snapshot = true 
+2023-10-05 16:54:53.059 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.migration+DUBBO_SERVICEDISCOVERY_MIGRATION
+2023-10-05 16:54:53.065 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.migration, group=DUBBO_SERVICEDISCOVERY_MIGRATION, cnt=1
+2023-10-05 16:54:53.168 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.configurators+dubbo
+2023-10-05 16:54:53.168 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 16:54:53.206 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router+dubbo
+2023-10-05 16:54:53.207 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:54:53.234 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.condition-router+dubbo
+2023-10-05 16:54:53.234 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.condition-router, group=dubbo, cnt=1
+2023-10-05 16:54:53.442 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.MESHAPPRULE+dubbo
+2023-10-05 16:54:53.442 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.MESHAPPRULE, group=dubbo, cnt=1
+2023-10-05 16:54:53.443 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] dubbo-provider.tag-router+dubbo
+2023-10-05 16:54:53.443 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=dubbo-provider.tag-router, group=dubbo, cnt=1
+2023-10-05 16:54:53.472 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators+dubbo
+2023-10-05 16:54:53.473 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:54:53.801 INFO [restartedMain:c.a.n.c.c.u.JvmUtil] isMultiInstance:false
+2023-10-05 16:54:53.802 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserService+mapping
+2023-10-05 16:54:53.802 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserService, group=mapping, cnt=1
+2023-10-05 16:54:53.990 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [db897500-98dc-47f5-a24e-3826ba082c19_config-0] Connected,notify listen context...
+2023-10-05 16:54:54.197 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:54:54.198 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:54:54.299 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:54:54.299 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:54:54.527 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService+mapping
+2023-10-05 16:54:54.527 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:54:54.581 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router+dubbo
+2023-10-05 16:54:54.581 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.condition-router, group=dubbo, cnt=1
+2023-10-05 16:54:54.681 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators+dubbo
+2023-10-05 16:54:54.681 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService:1.0.1:.configurators, group=dubbo, cnt=1
+2023-10-05 16:54:54.906 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] com.fanyu.fanyucommon.service.InnerInterfaceInfoService+mapping
+2023-10-05 16:54:54.907 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=com.fanyu.fanyucommon.service.InnerInterfaceInfoService, group=mapping, cnt=1
+2023-10-05 16:54:55.041 INFO [restartedMain:c.a.n.c.c.i.ClientWorker] [fixed-124.70.61.81_8848] [subscribe] org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators+dubbo
+2023-10-05 16:54:55.042 INFO [restartedMain:c.a.n.c.c.i.CacheData] [fixed-124.70.61.81_8848] [add-listener] ok, tenant=, dataId=org.apache.dubbo.metadata.MetadataService:1.0.0:dubbo-provider.configurators, group=dubbo, cnt=1
+2023-10-05 17:16:40.529 INFO [Thread-2:c.a.n.c.a.r.i.CredentialWatcher] [null] CredentialWatcher is stopped
+2023-10-05 17:16:40.529 INFO [Thread-2:c.a.n.c.a.r.i.CredentialService] [null] CredentialService is freed
+2023-10-05 17:16:41.341 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.a.r.i.CredentialWatcher] null No credential found
+2023-10-05 17:16:42.571 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] com.alibaba.nacos.client.config.impl.ClientWorker do shutdown begin
+2023-10-05 17:16:42.571 INFO [Thread-2:c.a.n.c.a.r.i.CredentialWatcher] [null] CredentialWatcher is stopped
+2023-10-05 17:16:42.571 INFO [Thread-2:c.a.n.c.a.r.i.CredentialService] [null] CredentialService is freed
+2023-10-05 17:16:42.571 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Trying to shutdown transport client com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient@212b1e94
+2023-10-05 17:16:42.571 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Trying to shutdown rpc client 9ad42081-ec5e-4604-a309-bb79d023ca6b_config-0
+2023-10-05 17:16:42.572 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Remove rpc client 9ad42081-ec5e-4604-a309-bb79d023ca6b_config-0
+2023-10-05 17:16:42.572 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] Shutdown executor java.util.concurrent.ScheduledThreadPoolExecutor@3514b345[Running, pool size = 16, active threads = 1, queued tasks = 1, completed tasks = 264]
+2023-10-05 17:16:42.572 INFO [com.alibaba.nacos.client.remote.worker:c.a.n.c.c.i.ClientWorker] [9ad42081-ec5e-4604-a309-bb79d023ca6b_config-0] DisConnected,clear listen context...
+2023-10-05 17:16:42.572 INFO [Thread-2:c.a.n.c.c.i.ClientWorker] com.alibaba.nacos.client.config.impl.ClientWorker do shutdown stop
+2023-10-05 17:16:42.775 INFO [com.alibaba.nacos.client.Worker:c.a.n.c.a.r.i.CredentialWatcher] null No credential found

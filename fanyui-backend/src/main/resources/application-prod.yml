@@ -1,0 +1,8 @@
+# 线上配置文件
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.70.61.81:3306/fyapi
+    username: root
+    password: 654321

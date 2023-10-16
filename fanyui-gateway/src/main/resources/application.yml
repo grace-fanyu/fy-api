@@ -9,4 +9,30 @@ spring:
           uri: http://localhost:8123
           predicates:
             - Path=/api/**
+  redis:
+    database: 0
+    host: 124.70.61.81
+    port: 6379
+    password: 123456
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+
+dubbo:
+  application:
+    name: dubbo-provider
+    qosEnable: true
+    qosPort: 33333
+    qosAcceptForeignIp: false
+
+  protocol:
+    name: dubbo
+    port: 20891
+  registry:
+    id: nacos-registry
+    address: nacos://124.70.61.81:8848
 

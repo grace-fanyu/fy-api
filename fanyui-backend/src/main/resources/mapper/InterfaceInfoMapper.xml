@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanyu.project.mapper.InterfaceInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.fanyu.fanyucommon.model.entity.InterfaceInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="requestParams" column="requestParams" jdbcType="VARCHAR"/>
+            <result property="requestHeader" column="requestHeader" jdbcType="VARCHAR"/>
+            <result property="responseHeader" column="responseHeader" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="method" column="method" jdbcType="VARCHAR"/>
+            <result property="priceStar" column="priceStar" jdbcType="BIGINT"/>
+            <result property="priceDiamond" column="priceDiamond" jdbcType="BIGINT"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,description,
+        url,requestParams,requestHeader,
+        responseHeader,status,method,
+        priceStar,priceDiamond,userId,
+        createTime,updateTime,isDelete
+    </sql>
+    <select id="listTopInvokeInterfaceInfo" resultMap="BaseResultMap" resultType="com.fanyu.project.model.vo.InterfaceInfoVO"
+            parameterType="com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest">
+
+            SELECT *
+            FROM interface_info WHERE 1=1
+            <if test="id !=null ">
+                AND id=#{id}
+            </if>
+            <if test="name !=null and name !=''">
+                AND name=#{name}
+            </if>
+            <if test="description !=null and description !=''">
+                AND description like #{description}
+            </if>
+            <if test="url !=null and url !=''">
+                AND url=#{url}
+            </if>
+            <if test="requestParams !=null and requestParams !=''">
+                AND requestParams like #{requestParams}
+            </if>
+            <if test="requestHeader !=null and requestHeader !=''">
+                AND requestHeader like #{requestHeader}
+            </if>
+            <if test="responseHeader !=null and responseHeader !=''">
+                AND responseHeader like #{responseHeader}
+            </if>
+            <if test="status !=null ">
+                AND status=#{status}
+            </if>
+            <if test="method !=null and method !=''">
+                AND method=#{method}
+            </if>
+            <if test="priceStar !=null ">
+                AND priceStar=#{priceStar}
+            </if>
+            <if test="priceDiamond !=null ">
+                AND priceDiamond=#{priceDiamond}
+            </if>
+            <if test="userId !=null ">
+                AND userId=#{userId}
+            </if>
+
+            <if test="pageSize !=null and current !=null">
+                LIMIT #{(current-1)*pageSize},#{pageSize}
+            </if>
+
+
+    </select>
+</mapper>
