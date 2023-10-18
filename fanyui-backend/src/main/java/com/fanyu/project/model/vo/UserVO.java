@@ -26,6 +26,10 @@ public class UserVO  {
      * 用户头像
      */
     private String userAvatar;
+    /**
+     * 邮箱
+     */
+    private String email;
 
     /**
      * 用户简介
@@ -36,6 +40,16 @@ public class UserVO  {
      * 用户角色：user/admin/ban
      */
     private String userRole;
+
+    /**
+     * 星琼
+     */
+    private Long userStar;
+
+    /**
+     * 钻石
+     */
+    private Long userDiamond;
 
     /**
      * accessKey

@@ -4,10 +4,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-
 @Data
-public class OrderAddRequest implements Serializable {
-
+public class OrderCreateRequest implements Serializable {
     /**
      * 调用用户 id
      */
@@ -39,5 +37,4 @@ public class OrderAddRequest implements Serializable {
     private Integer status;
 
     private static final long serialVersionUID = 1L;
-
 }

@@ -11,6 +11,7 @@ import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
 import com.fanyu.project.model.dto.interfaceinfo.*;
 import com.fanyu.project.model.enums.InterfaceInfoStatusEnum;
+import com.fanyu.project.model.vo.InterfaceInfoListVO;
 import com.fanyu.project.model.vo.InterfaceInfoVO;
 import com.fanyu.project.service.InterfaceInfoService;
 import com.fanyu.project.service.UserService;
@@ -53,6 +54,7 @@ public class InterfaceInfoController {
      * @return 执行情况
      */
     @PostMapping("/add")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Long> addInterfaceInfo(@RequestBody InterfaceInfoAddRequest interfaceInfoAddRequest, HttpServletRequest request) {
         if (interfaceInfoAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -72,13 +74,13 @@ public class InterfaceInfoController {
     }
 
     /**
-     * 删除
-     *
+     * 删除接口（仅限管理员）
      * @param deleteRequest DeleteRequest
      * @param request       HttpServletRequest
      * @return BaseResponse
      */
     @PostMapping("/delete")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> deleteInterfaceInfo(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -100,12 +102,12 @@ public class InterfaceInfoController {
 
     /**
      * 更新
-     *
      * @param interfaceInfoUpdateRequest API接口更新请求
      * @param request                    请求参数
      * @return BaseResponse
      */
     @PostMapping("/update")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateInterfaceInfo(@RequestBody InterfaceInfoUpdateRequest interfaceInfoUpdateRequest,
                                                      HttpServletRequest request) {
         if (interfaceInfoUpdateRequest == null || interfaceInfoUpdateRequest.getId() <= 0) {
@@ -131,18 +133,17 @@ public class InterfaceInfoController {
     }
 
     /**
-     * 根据 id 获取
-     *
+     * 用户根据 id 获取脱敏后的接口信息
      * @param id 接口id
      * @return BaseResponse
      */
     @GetMapping("/get")
-    public BaseResponse<InterfaceInfo> getInterfaceInfoById(long id) {
+    public BaseResponse<InterfaceInfoVO> getInterfaceInfoById(long id) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
-        return ResultUtils.success(interfaceInfo);
+        return ResultUtils.success(interfaceInfoService.getInterfaceVO(interfaceInfo));
     }
 
     /**
@@ -151,7 +152,6 @@ public class InterfaceInfoController {
      * @param interfaceInfoQueryRequest InterfaceInfoQueryRequest
      * @return BaseResponse
      */
-
     @GetMapping("/list")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Page<InterfaceInfo>> listInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
@@ -169,15 +169,16 @@ public class InterfaceInfoController {
      * @param request                   HttpServletRequest
      * @return BaseResponse
      */
-    @GetMapping("/list/page")
-    public BaseResponse<List<InterfaceInfoVO>> listInterfaceInfoByPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
+    @PostMapping("/list/page")
+    public BaseResponse<List<InterfaceInfoListVO>> listInterfaceInfoByPage(@RequestBody InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
         if (interfaceInfoQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        List<InterfaceInfoVO> interfaceInfoVOList = interfaceInfoService.interfaceVOPage(interfaceInfoQueryRequest,request);
+        List<InterfaceInfoListVO> interfaceInfoVOList = interfaceInfoService.interfaceVOPage(interfaceInfoQueryRequest,request);
 
         return ResultUtils.success(interfaceInfoVOList);
     }
+
     // endregion
 
 
@@ -206,6 +207,7 @@ public class InterfaceInfoController {
 //        if (StringUtils.isBlank(username)){
 //            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"接口验证失败");
 //        }
+
         InterfaceInfo interfaceInfo = new InterfaceInfo();
         interfaceInfo.setId(id);
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
@@ -216,7 +218,6 @@ public class InterfaceInfoController {
 
     /**
      * 下线
-     *
      * @param idRequest 传参id
      * @return 如果成功返回 success 方法
      */
@@ -240,10 +241,10 @@ public class InterfaceInfoController {
 
         return ResultUtils.success(result);
     }
+
+
     @PostMapping("/buy")
     public BaseResponse<Boolean> buyInterfaceInfo(@RequestBody InterfaceInfoBuyRequest interfaceInfoBuyRequest,HttpServletRequest request){
-
-
         return ResultUtils.success(true);
     }
 

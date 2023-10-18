@@ -29,7 +29,7 @@
         priceStar,priceDiamond,userId,
         createTime,updateTime,isDelete
     </sql>
-    <select id="listTopInvokeInterfaceInfo" resultMap="BaseResultMap" resultType="com.fanyu.project.model.vo.InterfaceInfoVO"
+    <select id="listTopInvokeInterfaceInfo"  resultType="com.fanyu.project.model.vo.InterfaceInfoListVO"
             parameterType="com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest">
 
             SELECT *
@@ -70,11 +70,8 @@
             <if test="userId !=null ">
                 AND userId=#{userId}
             </if>
-
-            <if test="pageSize !=null and current !=null">
-                LIMIT #{(current-1)*pageSize},#{pageSize}
+            <if test="num !=null and page != null">
+                LIMIT #{num},#{page};
             </if>
-
-
     </select>
 </mapper>

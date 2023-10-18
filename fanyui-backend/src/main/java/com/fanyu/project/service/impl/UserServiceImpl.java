@@ -13,6 +13,8 @@ import com.fanyu.project.common.ErrorCode;
 import com.fanyu.project.common.ResultUtils;
 import com.fanyu.project.constant.UserConstant;
 import com.fanyu.project.exception.BusinessException;
+import com.fanyu.project.exception.ThrowUtils;
+import com.fanyu.project.model.dto.user.UserAddRequest;
 import com.fanyu.project.model.dto.user.UserQueryRequest;
 import com.fanyu.project.model.enums.UserRoleEnum;
 import com.fanyu.project.model.vo.LoginUserVO;
@@ -235,6 +237,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return true;
     }
 
+    /**
+     * 用户平台账号登录
+     * @param userAccount  用户账户
+     * @param userPassword 用户密码
+     * @param request      请求信息
+     * @return LoginUserVO
+     */
     @Override
     public LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         // 1. 校验
@@ -264,13 +273,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.getLoginUserVO(user);
     }
 
-
-
     /**
      * 获取当前登录用户
      *
-     * @param request
-     * @return
+     * @param request HttpServletRequest
+     * @return User
      */
     @Override
     public User getLoginUser(HttpServletRequest request) {
@@ -287,43 +294,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
 //        }
         return currentUser;
-    }
-
-    public String getCode(String receiver, String email){
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getEmail,email);
-        User user= this.baseMapper.selectOne(queryWrapper);
-        // 首先判断邮箱是否已经注册，已经注册则提示已经注册过了，未注册则继续
-        if (null != user){
-            throw new BusinessException(ErrorCode.PARAMS_ERROR,"邮箱已经注册");
-        }
-        // 定义返回消息
-        String message;
-        try {
-            SendMailUtil sendMailUtil = new SendMailUtil();
-            //判断邮箱格式是否正确
-            if (sendMailUtil.isNotEmail(email)) {
-                // 工具类生成6位随机码
-                StringBuilder code = sendMailUtil.CreateCode();
-                ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
-                // 如果redis的验证码还存在则提示
-                if (operations.get(email) != null) {
-                    message = "验证码已发送,请60秒后重试";
-                } else {
-                    operations.set(email, String.valueOf(code));
-                    // 设置验证码过期时间，可以根据需求调整
-                    stringRedisTemplate.expire(email, 60, TimeUnit.SECONDS);
-                    // 这里填写发送验证码的邮箱账号及授权码
-                    message = sendMailUtil.sendEmail("", "", receiver, String.valueOf(code));
-                }
-            } else {
-                message = "邮箱格式不正确";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            message = "出现未知错误";
-        }
-        return message;
     }
 
     /**
@@ -344,6 +314,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public boolean isAdmin(User user) {
         return user != null && UserRoleEnum.ADMIN.getValue().equals(user.getUserRole());
     }
+
     /**
      * 每日签到获取星琼
      *
@@ -386,6 +357,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("email", email);
         User user = this.baseMapper.selectOne(queryWrapper);
+
         // 用户不存在
         if (user == null) {
             log.info("user login failed, userAccount cannot match userPassword");
@@ -397,9 +369,54 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     /**
-     * 用户注销
+     * 用户添加
      *
-     * @param request
+     * @param userAddRequest 用户创建信息
+     */
+    @Override
+    public long addUser(UserAddRequest userAddRequest) {
+        String userAccount = userAddRequest.getUserAccount();
+        String userPassword = userAddRequest.getUserPassword();
+        // 1. 校验
+        if (StringUtils.isAnyBlank(userAccount, userPassword)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
+        }
+        if (userAccount.length() < 4) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号错误");
+        }
+        if (userPassword.length() < 8) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
+        }
+
+        // 账户不能重复
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userAccount", userAccount);
+        long count = this.baseMapper.selectCount(queryWrapper);
+        if (count > 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号重复");
+        }
+        // 2. 加密
+        String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
+        //给用户分配调用接口的公钥和私钥ak,sk，保证复杂的同时要保证唯一
+        String accessKey = DigestUtil.md5Hex(SALT+userAccount+ RandomUtil.randomNumbers(5));
+        String secretKey = DigestUtil.md5Hex(SALT+userAccount+ RandomUtil.randomNumbers(8));
+
+        User user = new User();
+        BeanUtils.copyProperties(userAddRequest, user);
+        String userImg = settingsService.getSettings().getUserImg();
+        user.setUserPassword(encryptPassword);
+        user.setAccessKey(accessKey);
+        user.setSecretKey(secretKey);
+        user.setUserAvatar(userImg);
+        boolean result = this.save(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return user.getId();
+    }
+
+    /**
+     * 用户注销
+     * @param request HttpServletRequest
+     * @return boolean
      */
     @Override
     public boolean userLogout(HttpServletRequest request) {

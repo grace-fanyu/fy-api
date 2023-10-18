@@ -12,6 +12,7 @@ import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
 import com.fanyu.project.model.dto.user.*;
 import com.fanyu.project.model.vo.LoginUserVO;
+import com.fanyu.project.model.vo.UserVO;
 import com.fanyu.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -119,7 +120,7 @@ public class UserController {
      */
 
     @PostMapping("/login/email")
-    public BaseResponse<LoginUserVO> emailEmailLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> emailLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -173,13 +174,18 @@ public class UserController {
      * @return BaseResponse
      */
     @GetMapping("/get/login")
-    public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
+    public BaseResponse<UserVO> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
-        return ResultUtils.success(userService.getLoginUserVO(user));
+        return ResultUtils.success(userService.getUserVO(user));
     }
 
     // endregion
 
+    /**
+     * 每日签到
+     * @param request HttpServletRequest
+     * @return BaseResponse
+     */
     @GetMapping("/sign")
     public BaseResponse<Boolean> userSignInDaily(HttpServletRequest request){
         Boolean userBoolean =userService.userSignInDaily(request);
@@ -202,11 +208,8 @@ public class UserController {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = new User();
-        BeanUtils.copyProperties(userAddRequest, user);
-        boolean result = userService.save(user);
-        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        return ResultUtils.success(user.getId());
+        long addUser = userService.addUser(userAddRequest);
+        return ResultUtils.success(addUser);
     }
 
     /**
@@ -250,7 +253,7 @@ public class UserController {
     /**
      * 根据 id 获取用户（仅管理员）
      *
-     * @param id
+     * @param id 用户id
      * @param request HttpServletRequest
      * @return BaseResponse
      */

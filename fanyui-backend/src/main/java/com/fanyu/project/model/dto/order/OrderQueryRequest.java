@@ -1,12 +1,16 @@
 package com.fanyu.project.model.dto.order;
 
+import com.fanyu.project.common.PageRequest;
 import lombok.Data;
 
 import java.io.Serializable;
-
-
+import java.util.Date;
 @Data
-public class OrderAddRequest implements Serializable {
+public class OrderQueryRequest extends PageRequest implements Serializable {
+    /**
+     * 主键
+     */
+    private Long id;
 
     /**
      * 调用用户 id
@@ -38,6 +42,17 @@ public class OrderAddRequest implements Serializable {
      */
     private Integer status;
 
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
+
     private static final long serialVersionUID = 1L;
+
 
 }

@@ -14,6 +14,10 @@ public class UserAddRequest implements Serializable {
      * 用户昵称
      */
     private String userName;
+    /**
+     * 用户头像
+     */
+    private String userAvatar;
 
     /**
      * 账号
@@ -21,9 +25,13 @@ public class UserAddRequest implements Serializable {
     private String userAccount;
 
     /**
-     * 用户头像
+     * 邮箱
      */
-    private String userAvatar;
+    private String email;
+    /**
+     * 用户密码
+     */
+    private String userPassword;
 
     /**
      * 用户角色: user, admin
@@ -31,15 +39,14 @@ public class UserAddRequest implements Serializable {
     private String userRole;
 
     /**
-     * accessKey
+     * 星琼
      */
-    private String accessKey;
-
+    private Long userStar;
 
     /**
-     * secretKey
+     * 钻石
      */
-    private String secretKey;
+    private Long userDiamond;
 
     private static final long serialVersionUID = 1L;
 }

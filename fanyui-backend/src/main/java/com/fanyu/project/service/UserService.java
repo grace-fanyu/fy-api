@@ -3,6 +3,7 @@ package com.fanyu.project.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fanyu.fanyucommon.model.entity.User;
+import com.fanyu.project.model.dto.user.UserAddRequest;
 import com.fanyu.project.model.dto.user.UserQueryRequest;
 import com.fanyu.project.model.vo.LoginUserVO;
 import com.fanyu.project.model.vo.UserVO;
@@ -146,4 +147,9 @@ public interface UserService extends IService<User> {
     LoginUserVO userEmailLogin(String email, String code, HttpServletRequest request);
 
 
+    /**
+     * 用户添加
+     * @param userAddRequest 用户创建信息
+     */
+    long addUser(UserAddRequest userAddRequest);
 }

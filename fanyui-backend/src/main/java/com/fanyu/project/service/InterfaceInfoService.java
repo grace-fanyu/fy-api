@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fanyu.fanyucommon.model.entity.InterfaceInfo;
 import com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
+import com.fanyu.project.model.vo.InterfaceInfoListVO;
 import com.fanyu.project.model.vo.InterfaceInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,12 @@ public interface InterfaceInfoService extends IService<InterfaceInfo> {
 	 * @param request HttpServletRequest
 	 * @return  Page<InterfaceInfoVO>
 	 */
-	List<InterfaceInfoVO> interfaceVOPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request);
+	List<InterfaceInfoListVO> interfaceVOPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request);
 
+	/**
+	 * 获取脱敏的接口信息
+	 * @param interfaceInfo 详细接口信息
+	 * @return InterfaceInfoListVO
+	 */
+	InterfaceInfoVO getInterfaceVO(InterfaceInfo interfaceInfo);
 }

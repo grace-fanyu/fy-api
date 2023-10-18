@@ -11,6 +11,7 @@ import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
 
 import com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
+import com.fanyu.project.model.vo.InterfaceInfoListVO;
 import com.fanyu.project.model.vo.InterfaceInfoVO;
 import com.fanyu.project.service.InterfaceInfoService;
 import com.fanyu.project.mapper.InterfaceInfoMapper;
@@ -76,7 +77,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 		if (size > 50) {
 			throw new BusinessException(ErrorCode.PARAMS_ERROR);
 		}
-		QueryWrapper<InterfaceInfo> queryWrapper = new QueryWrapper<>(interfaceInfoQuery);
+		QueryWrapper<InterfaceInfo> queryWrapper = getQueryWrapper(interfaceInfoQueryRequest);
 		queryWrapper.like(StringUtils.isNotBlank(description), "description", description);
 		queryWrapper.orderBy(StringUtils.isNotBlank(sortField),
 				sortOrder.equals(CommonConstant.SORT_ORDER_ASC), sortField);
@@ -91,15 +92,31 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 	 * @return Page<InterfaceInfoVO>
 	 */
 	@Override
-	public List<InterfaceInfoVO> interfaceVOPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
+	public List<InterfaceInfoListVO> interfaceVOPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
+		if (interfaceInfoQueryRequest == null) {
+			throw new BusinessException(ErrorCode.PARAMS_ERROR);
+		}
+		return this.baseMapper.listTopInvokeInterfaceInfo(interfaceInfoQueryRequest);
+	}
 
-
-		List<InterfaceInfoVO> interfaceInfoVOS = this.baseMapper.listTopInvokeInterfaceInfo(interfaceInfoQueryRequest);
-		return interfaceInfoVOS;
+	/**
+	 * 获取脱敏的接口信息
+	 *
+	 * @param interfaceInfo 详细接口信息
+	 * @return InterfaceInfoListVO
+	 */
+	@Override
+	public InterfaceInfoVO getInterfaceVO(InterfaceInfo interfaceInfo) {
+		if (interfaceInfo == null) {
+			throw new BusinessException(ErrorCode.PARAMS_ERROR);
+		}
+		InterfaceInfoVO interfaceInfoVO = new InterfaceInfoVO();
+		BeanUtils.copyProperties(interfaceInfo, interfaceInfoVO);
+		return interfaceInfoVO;
 	}
 
 
-//	/**
+	//	/**
 //	 * 获取查询条件
 //	 *
 //	 * @param interfaceInfoQueryRequest
@@ -107,9 +124,6 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 //	 */
 //	@Override
 	public QueryWrapper<InterfaceInfo> getQueryWrapper(InterfaceInfoQueryRequest interfaceInfoQueryRequest) {
-
-
-
 		if (interfaceInfoQueryRequest == null) {
 			throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
 		}

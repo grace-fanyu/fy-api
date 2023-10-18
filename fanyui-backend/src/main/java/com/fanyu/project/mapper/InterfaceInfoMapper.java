@@ -2,9 +2,8 @@ package com.fanyu.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fanyu.fanyucommon.model.entity.InterfaceInfo;
-import com.fanyu.fanyucommon.model.entity.UserInterfaceInfo;
 import com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
-import com.fanyu.project.model.vo.InterfaceInfoVO;
+import com.fanyu.project.model.vo.InterfaceInfoListVO;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 */
 public interface InterfaceInfoMapper extends BaseMapper<InterfaceInfo> {
 
-    List<InterfaceInfoVO> listTopInvokeInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest);
+    List<InterfaceInfoListVO> listTopInvokeInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest);
 
 }
 

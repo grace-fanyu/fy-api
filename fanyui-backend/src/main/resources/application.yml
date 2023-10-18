@@ -14,7 +14,7 @@ spring:
     username: root
     password: 654321
     hikari:
-      max-lifetime: 666666
+      max-lifetime: 120000
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -52,8 +52,6 @@ spring:
           connection-timeout: 10000
           # 邮件发送时间的限制，单位毫秒
           write-timeout: 10000
-
-
 
 
 
