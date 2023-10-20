@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 @Data
 public class OrderUpdateRequest implements Serializable {
+
     /**
      * 主键
      */
@@ -21,6 +22,4 @@ public class OrderUpdateRequest implements Serializable {
     private Integer status;
 
     private static final long serialVersionUID = 1L;
-
-
 }

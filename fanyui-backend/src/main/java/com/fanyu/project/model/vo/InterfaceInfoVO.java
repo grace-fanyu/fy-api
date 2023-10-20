@@ -6,11 +6,9 @@ import lombok.Data;
  * 接口视图(脱敏)
  *
  */
-
-
-
 @Data
 public class InterfaceInfoVO  {
+
     /**
      * 接口id
      */
@@ -45,6 +43,7 @@ public class InterfaceInfoVO  {
      * 响应头
      */
     private String responseHeader;
+
     /**
      * 请求类型
      */

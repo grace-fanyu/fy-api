@@ -2,11 +2,15 @@ package com.fanyu.project.model.dto.order;
 
 import com.fanyu.project.common.PageRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
+
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class OrderQueryRequest extends PageRequest implements Serializable {
+
     /**
      * 主键
      */
@@ -52,7 +56,9 @@ public class OrderQueryRequest extends PageRequest implements Serializable {
      */
     private Date updateTime;
 
+    private Long num = (getCurrent()-1)* getPageSize();
+
+    private Long page = getPageSize();
+
     private static final long serialVersionUID = 1L;
-
-
 }

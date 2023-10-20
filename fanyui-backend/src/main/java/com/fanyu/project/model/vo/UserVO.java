@@ -26,6 +26,7 @@ public class UserVO  {
      * 用户头像
      */
     private String userAvatar;
+
     /**
      * 邮箱
      */
@@ -55,7 +56,6 @@ public class UserVO  {
      * accessKey
      */
     private String accessKey;
-
 
     /**
      * secretKey

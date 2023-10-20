@@ -9,7 +9,5 @@ import java.io.Serializable;
  */
 @Data
 public class EmailRequest implements Serializable {
-
-
     private String email;
 }

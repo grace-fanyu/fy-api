@@ -7,6 +7,8 @@ import com.fanyu.project.mapper.SettingsMapper;
 import com.fanyu.project.service.SettingsService;
 import org.springframework.stereotype.Service;
 
+
+
 /**
  * 基本设置信息
 * @author 凡雨
@@ -23,7 +25,4 @@ public class SettingsServiceImpl extends ServiceImpl<SettingsMapper, Settings> i
         return this.getById(1);
     }
 }
-
-
-
 

@@ -2,6 +2,7 @@ package com.fanyu.project.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fanyu.fanyucommon.model.entity.Order;
+import com.fanyu.fanyucommon.model.entity.User;
 import com.fanyu.project.annotation.AuthCheck;
 import com.fanyu.project.common.BaseResponse;
 import com.fanyu.project.common.DeleteRequest;
@@ -16,6 +17,7 @@ import com.fanyu.project.model.dto.order.OrderQueryRequest;
 import com.fanyu.project.model.dto.order.OrderUpdateRequest;
 import com.fanyu.project.model.vo.OrderVO;
 import com.fanyu.project.service.OrderService;
+import com.fanyu.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,8 @@ import java.util.List;
 public class OrderController {
     @Resource
     private OrderService orderService;
+    @Resource
+    private UserService userService;
 
 
 
@@ -41,7 +45,7 @@ public class OrderController {
 
 
     /**
-     * 用户创建订单
+     * 用户下订单买接口调用次数
      *
      * @param orderCreateRequest OrderAddRequest
      * @param request HttpServletRequest
@@ -52,6 +56,8 @@ public class OrderController {
         if (orderCreateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        User user = userService.getLoginUser(request);
+        orderCreateRequest.setUserId(user.getId());
         long createOrder = orderService.createOrder(orderCreateRequest);
         return ResultUtils.success(createOrder);
     }
@@ -68,25 +74,28 @@ public class OrderController {
      * @return BaseResponse
      */
     @PostMapping("/logout")
-    public BaseResponse<Boolean> orderLogout(HttpServletRequest request) {
-        if (request == null) {
+    public BaseResponse<Boolean> orderLogout(@RequestBody DeleteRequest deleteRequest,HttpServletRequest request) {
+        if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        boolean result = orderService.orderLogout(request);
+        boolean result = orderService.removeById(deleteRequest.getId());
         return ResultUtils.success(result);
     }
 
 
 
     /**
-     * 获取当前登录订单
+     * 根据订单 id 获取当前订单详细信息
      *
-     * @param request HttpServletRequest
+     * @param id 订单id
      * @return BaseResponse
      */
     @GetMapping("/get/order")
-    public BaseResponse<OrderVO> getLoginOrder(HttpServletRequest request) {
-        Order order = orderService.getOrder(request);
+    public BaseResponse<OrderVO> getLoginOrderById(long id) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Order order = orderService.getById(id);
         return ResultUtils.success(orderService.getOrderVO(order));
     }
     /**
@@ -122,6 +131,8 @@ public class OrderController {
         if (orderAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        User user = userService.getLoginUser(request);
+        orderAddRequest.setUserId(user.getId());
         long addOrder = orderService.addOrder(orderAddRequest);
         return ResultUtils.success(addOrder);
     }

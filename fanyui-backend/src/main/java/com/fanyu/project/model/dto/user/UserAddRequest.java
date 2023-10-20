@@ -14,6 +14,7 @@ public class UserAddRequest implements Serializable {
      * 用户昵称
      */
     private String userName;
+
     /**
      * 用户头像
      */
@@ -28,6 +29,7 @@ public class UserAddRequest implements Serializable {
      * 邮箱
      */
     private String email;
+
     /**
      * 用户密码
      */

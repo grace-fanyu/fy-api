@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class UserUpdateRequest implements Serializable {
+
     /**
      * id
      */
@@ -39,11 +40,11 @@ public class UserUpdateRequest implements Serializable {
      */
     private String accessKey;
 
-
     /**
      * secretKey
      */
     private String secretKey;
+
     /**
      * 星琼
      */

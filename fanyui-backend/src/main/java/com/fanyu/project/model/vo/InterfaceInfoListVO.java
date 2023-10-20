@@ -1,6 +1,10 @@
 package com.fanyu.project.model.vo;
 
+import lombok.Data;
+
+@Data
 public class InterfaceInfoListVO {
+
     /**
      * 接口id
      */
@@ -15,6 +19,7 @@ public class InterfaceInfoListVO {
      * 接口描述
      */
     private String description;
+
     /**
      * 星琼/100次
      */

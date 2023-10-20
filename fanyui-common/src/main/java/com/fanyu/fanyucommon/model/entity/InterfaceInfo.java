@@ -70,6 +70,11 @@ public class InterfaceInfo implements Serializable {
     private Long priceDiamond;
 
     /**
+     * 购买量
+     */
+    private Long totalNum;
+
+    /**
      * 创建人
      */
     private Long userId;

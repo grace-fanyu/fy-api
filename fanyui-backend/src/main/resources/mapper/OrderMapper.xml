@@ -18,9 +18,39 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,userId,interfaceInfoId,
+        `id`,userId,interfaceInfoId,
         totalNum,priceStar,priceDiamond,
-        status,createTime,updateTime,
+        `status`,createTime,updateTime,
         isDelete
     </sql>
+    <select id="listOrder" resultType="com.fanyu.project.model.vo.OrderVO"
+            parameterType="com.fanyu.project.model.dto.order.OrderQueryRequest">
+        SELECT *
+        FROM `order` WHERE 1=1
+        <if test="id !=null ">
+            AND id=#{id}
+        </if>
+        <if test="userId !=null ">
+            AND userId=#{userId}
+        </if>
+        <if test="interfaceInfoId !=null ">
+            AND interfaceInfoId=#{interfaceInfoId}
+        </if>
+        <if test="totalNum !=null ">
+            AND totalNum=#{totalNum}
+        </if>
+        <if test="priceStar !=null ">
+            AND priceStar=#{priceStar}
+        </if>
+        <if test="priceDiamond !=null ">
+            AND priceDiamond=#{priceDiamond}
+        </if>
+        <if test="status !=null ">
+            AND status=#{status}
+        </if>
+        <if test="num !=null and page != null">
+            LIMIT #{num},#{page};
+        </if>
+
+    </select>
 </mapper>

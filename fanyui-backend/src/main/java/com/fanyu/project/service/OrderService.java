@@ -18,17 +18,42 @@ import java.util.List;
 */
 public interface OrderService extends IService<Order> {
 
-    Order getOrder(HttpServletRequest request);
 
+
+    /**
+     * 获取脱敏订单
+     * @param order 订单
+     * @return OrderVO
+     */
     OrderVO getOrderVO(Order order);
 
+    /**
+     * 管理员添加订单
+     * @param orderAddRequest OrderAddRequest
+     * @return 订单id
+     */
     long addOrder(OrderAddRequest orderAddRequest);
 
+    /**
+     * 查询订单
+     * @param orderQueryRequest OrderQueryRequest
+     * @return QueryWrapper<Order>
+     */
     QueryWrapper<Order> getQueryWrapper(OrderQueryRequest orderQueryRequest);
 
+    /**
+     * 添加订单
+     * @param orderCreateRequest OrderCreateRequest
+     * @return 订单id
+     */
     long createOrder(OrderCreateRequest orderCreateRequest);
 
-    boolean orderLogout(HttpServletRequest request);
 
+    /**
+     * 订单列表
+     * @param orderQueryRequest OrderQueryRequest
+     * @param request HttpServletRequest
+     * @return 订单列表
+     */
     List<OrderVO> orderVOPage(OrderQueryRequest orderQueryRequest, HttpServletRequest request);
 }

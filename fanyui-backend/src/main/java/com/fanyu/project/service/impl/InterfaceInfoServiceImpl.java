@@ -96,7 +96,11 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 		if (interfaceInfoQueryRequest == null) {
 			throw new BusinessException(ErrorCode.PARAMS_ERROR);
 		}
-		return this.baseMapper.listTopInvokeInterfaceInfo(interfaceInfoQueryRequest);
+		Integer status = interfaceInfoQueryRequest.getStatus();
+		if (status == null){
+			interfaceInfoQueryRequest.setStatus(1);
+		}
+		return this.baseMapper.listInterfaceInfo(interfaceInfoQueryRequest);
 	}
 
 	/**
@@ -123,7 +127,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 //	 * @return
 //	 */
 //	@Override
-	public QueryWrapper<InterfaceInfo> getQueryWrapper(InterfaceInfoQueryRequest interfaceInfoQueryRequest) {
+	private QueryWrapper<InterfaceInfo> getQueryWrapper(InterfaceInfoQueryRequest interfaceInfoQueryRequest) {
 		if (interfaceInfoQueryRequest == null) {
 			throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
 		}

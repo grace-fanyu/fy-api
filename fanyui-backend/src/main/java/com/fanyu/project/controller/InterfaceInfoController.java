@@ -143,6 +143,7 @@ public class InterfaceInfoController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
+        ThrowUtils.throwIf(interfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
         return ResultUtils.success(interfaceInfoService.getInterfaceVO(interfaceInfo));
     }
 
@@ -243,10 +244,6 @@ public class InterfaceInfoController {
     }
 
 
-    @PostMapping("/buy")
-    public BaseResponse<Boolean> buyInterfaceInfo(@RequestBody InterfaceInfoBuyRequest interfaceInfoBuyRequest,HttpServletRequest request){
-        return ResultUtils.success(true);
-    }
 
     /**
      * 测试调用

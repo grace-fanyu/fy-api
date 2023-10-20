@@ -3,6 +3,12 @@ package com.fanyu.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fanyu.fanyucommon.model.entity.Order;
+import com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
+import com.fanyu.project.model.dto.order.OrderQueryRequest;
+import com.fanyu.project.model.vo.InterfaceInfoListVO;
+import com.fanyu.project.model.vo.OrderVO;
+
+import java.util.List;
 
 /**
 * @author lison
@@ -11,6 +17,9 @@ import com.fanyu.fanyucommon.model.entity.Order;
 * @Entity generator.domain.Order
 */
 public interface OrderMapper extends BaseMapper<Order> {
+
+    List<OrderVO> listOrder(OrderQueryRequest orderQueryRequest);
+
 
 }
 

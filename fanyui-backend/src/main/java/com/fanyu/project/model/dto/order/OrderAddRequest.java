@@ -39,5 +39,4 @@ public class OrderAddRequest implements Serializable {
     private Integer status;
 
     private static final long serialVersionUID = 1L;
-
 }

@@ -19,6 +19,7 @@ create table if not exists user
     `userRole`     varchar(256) default 'user'            not null comment '用户角色：user/admin/ban',
     `userStar`     bigint       default 0                 not null comment '星琼',
     `userDiamond`  bigint       default 0                 not null comment '钻石',
+    `totalNum`     bigint       default 0                 not null comment '购买量',
     `accessKey`    varchar(512)                           not null comment 'accessKey',
     `secretKey`    varchar(512)                           not null comment 'secretKey',
     `createTime`   datetime     default CURRENT_TIMESTAMP not null comment '创建时间',

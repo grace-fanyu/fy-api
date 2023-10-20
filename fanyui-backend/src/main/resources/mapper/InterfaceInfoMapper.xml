@@ -29,7 +29,7 @@
         priceStar,priceDiamond,userId,
         createTime,updateTime,isDelete
     </sql>
-    <select id="listTopInvokeInterfaceInfo"  resultType="com.fanyu.project.model.vo.InterfaceInfoListVO"
+    <select id="listInterfaceInfo"  resultType="com.fanyu.project.model.vo.InterfaceInfoListVO"
             parameterType="com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest">
 
             SELECT *

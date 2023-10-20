@@ -2,40 +2,27 @@ package com.fanyu.project.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fanyu.fanyucommon.model.entity.Settings;
 import com.fanyu.fanyucommon.model.entity.User;
-import com.fanyu.project.common.BaseResponse;
 import com.fanyu.project.common.ErrorCode;
-import com.fanyu.project.common.ResultUtils;
+import com.fanyu.project.constant.CommonConstant;
 import com.fanyu.project.constant.UserConstant;
 import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
+import com.fanyu.project.mapper.UserMapper;
 import com.fanyu.project.model.dto.user.UserAddRequest;
 import com.fanyu.project.model.dto.user.UserQueryRequest;
 import com.fanyu.project.model.enums.UserRoleEnum;
 import com.fanyu.project.model.vo.LoginUserVO;
 import com.fanyu.project.model.vo.UserVO;
 import com.fanyu.project.service.SettingsService;
+import com.fanyu.project.service.UserService;
 import com.fanyu.project.utils.SendMailUtil;
 import com.fanyu.project.utils.SqlUtils;
-import com.fanyu.project.constant.CommonConstant;
-import com.fanyu.project.mapper.UserMapper;
-import com.fanyu.project.service.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import javax.annotation.Resource;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeUtility;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -45,7 +32,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import static com.fanyu.project.constant.RedisConstants.*;
+import javax.annotation.Resource;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeUtility;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import static com.fanyu.project.constant.RedisConstants.SEND_EMAIL_KEY;
+import static com.fanyu.project.constant.RedisConstants.SEND_EMAIL_TTL;
 
 /**
  * 用户服务实现
@@ -270,6 +267,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         // 3. 记录用户的登录态
         request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
+
         return this.getLoginUserVO(user);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 */
 public interface InterfaceInfoMapper extends BaseMapper<InterfaceInfo> {
 
-    List<InterfaceInfoListVO> listTopInvokeInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest);
+    List<InterfaceInfoListVO> listInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest);
 
 }
 

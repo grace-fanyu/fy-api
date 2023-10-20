@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class OrderCreateRequest implements Serializable {
+
     /**
      * 调用用户 id
      */
