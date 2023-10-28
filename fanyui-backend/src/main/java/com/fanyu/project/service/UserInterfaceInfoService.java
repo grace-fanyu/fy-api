@@ -3,9 +3,7 @@ package com.fanyu.project.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fanyu.fanyucommon.model.entity.UserInterfaceInfo;
-import com.fanyu.project.common.BaseResponse;
 import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
-import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateRequest;
 import com.fanyu.project.model.vo.UserInterfaceInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,28 +31,27 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
     Integer getUserInterfaceInfoLeftNum(Long InterfaceId ,Long userId);
 
     /**
-     * 调用接口统计
-     * @param interfaceInfoId
-     * @param userId
-     * @return
+     * 调用接口次数统计
+     * @param interfaceInfoId 接口id
+     * @param userId 用户id
+     * @return 是否成功
      */
     boolean invokeCount(long interfaceInfoId, long userId);
 
     /**
      * 获取接口调用列表
-     * @param userInterfaceInfoQueryRequest
-     * @param request
-     * @return
+     * @param userInterfaceInfoQueryRequest UserInterfaceInfoQueryRequest
+     * @param request HttpServletRequest
+     * @return 信息列表
      */
     List<UserInterfaceInfoVO> userInterfaceVOPage(UserInterfaceInfoQueryRequest userInterfaceInfoQueryRequest, HttpServletRequest request);
 
+
+
     /**
-     * 接口调用次数修改 TODO
-     *
-     * @param userInterfaceInfoUpdateRequest 接口调用更新请求
-     * @param request                        请求参数
-     * @return 是否更新成功
+     * 创建用户调用信息
+     * @param userInterfaceInfo 创建信息
+     * @return 接口调用信息id
      */
-    Boolean userUpdateUserInterfaceInfo( UserInterfaceInfoUpdateRequest userInterfaceInfoUpdateRequest,
-                                         HttpServletRequest request) ;
+    Long createUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo);
 }

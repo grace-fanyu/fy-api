@@ -1,5 +1,5 @@
 #Dubbo cache
-#Thu Oct 05 17:26:50 CST 2023
+#Sun Oct 22 19:39:28 CST 2023
 com.fanyu.fanyucommon.service.InnerUserInterfaceInfoService=["dubbo-provider"]
 com.fanyu.fanyucommon.service.InnerUserService=["dubbo-provider"]
 com.fanyu.fanyucommon.service.InnerInterfaceInfoService=["dubbo-provider"]

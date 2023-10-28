@@ -3,16 +3,13 @@
 spring:
   application:
     name: fanyui-backend
-    cloud:
-      nacos:
-        discovery:
-          server-addr: 124.70.61.81:8848
+
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://124.70.61.81:3306/fyapi
+    url: jdbc:mysql://39.101.66.101:3306/fyapi
     username: root
-    password: 654321
+    password: 123456
     hikari:
       max-lifetime: 120000
   mvc:
@@ -82,7 +79,7 @@ dubbo:
     port: -1
   registry:
     id: nacos-registry
-    address: nacos://124.70.61.81:8848
+    address: nacos://39.101.66.101:8848
 #dubbo:
 #  # 配置元数据中心
 #  metadata-report:

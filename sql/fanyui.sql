@@ -27,12 +27,12 @@ create table if not exists user
     `isDelete`     tinyint      default 0                 not null comment '是否删除',
     index idx_unionId (unionId)
 ) comment '用户' collate = utf8mb4_unicode_ci;
-INSERT INTO user (id, userAccount, userPassword, unionId, mpOpenId, userName, userAvatar, userProfile, userRole,
-                  accessKey, secretKey, createTime, updateTime, isDelete)
-VALUES (1709891310753886209, 'fanyu', 'cb1a274fbb3cd987568b8a63ac987e5a', null, null, '凡雨',
-        'https://cdn.pixabay.com/photo/2017/11/25/12/34/hamburg-2976711_640.jpg', null, 'admin',
-        'a5f2056edf0a95db8e24b1205636104b', '5c1983b7d28fc028c09d165a2ccd7108', '2023-10-05 11:20:31',
-        '2023-10-05 11:21:53', 0);
+INSERT INTO fyapi.user (id, userAccount, userPassword, email, unionId, mpOpenId, userName, userAvatar, userProfile, userRole, userStar, userDiamond, accessKey, secretKey, createTime, updateTime, isDelete) VALUES (1709891310753886209, 'fanyu', 'cb1a274fbb3cd987568b8a63ac987e5a', null, null, null, '凡雨', 'https://cdn.pixabay.com/photo/2017/11/25/12/34/hamburg-2976711_640.jpg', 'sed cillum sunt in pariatur', 'admin', 300, 0, 'a5f2056edf0a95db8e24b1205636104b', '5c1983b7d28fc028c09d165a2ccd7108', '2023-10-05 11:20:31', '2023-10-19 12:35:06', 0);
+INSERT INTO fyapi.user (id, userAccount, userPassword, email, unionId, mpOpenId, userName, userAvatar, userProfile, userRole, userStar, userDiamond, accessKey, secretKey, createTime, updateTime, isDelete) VALUES (1709891310753886210, 'Samul_Alen', 'cb1a274fbb3cd987568b8a63ac987e5a', '2721525758@qq.com', null, null, null, 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', null, 'user', 100, 0, 'a6d0777cbd20750d612c74ce17211e46', 'aadf34f64526d48b9609510139a6adbc', '2023-10-14 11:41:54', '2023-10-14 11:41:54', 0);
+INSERT INTO fyapi.user (id, userAccount, userPassword, email, unionId, mpOpenId, userName, userAvatar, userProfile, userRole, userStar, userDiamond, accessKey, secretKey, createTime, updateTime, isDelete) VALUES (1709891310753886211, 'laborum', 'cb1a274fbb3cd987568b8a63ac987e5a', 'j.fmjkcg@qlifm.qa', null, null, '傅洋', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', 'esse dolor', 'user', 65, 52, '1c29b1ef927e1c228897719c83d920c0', 'e0dfa9938cc8ec1f077ac5e0b813cb6a', '2023-10-18 12:46:51', '2023-10-19 12:38:30', 0);
+INSERT INTO fyapi.user (id, userAccount, userPassword, email, unionId, mpOpenId, userName, userAvatar, userProfile, userRole, userStar, userDiamond, accessKey, secretKey, createTime, updateTime, isDelete) VALUES (1709891310753886212, 'reprehenderit quis', '8d607c077ec2528b67e6cd1cb0694807', 'y.zarocrgxi@qq.com', null, null, '于娟', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', null, 'ad', 81, 40, 'f0f95cc2f1611947da093ec1cc66c566', '6e240fec2ca03177a03aacbc3265c47e', '2023-10-19 12:04:42', '2023-10-19 12:05:09', 1);
+INSERT INTO fyapi.user (id, userAccount, userPassword, email, unionId, mpOpenId, userName, userAvatar, userProfile, userRole, userStar, userDiamond, accessKey, secretKey, createTime, updateTime, isDelete) VALUES (1709891310753886213, null, null, '2983509080@qq.com', null, null, null, 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', null, 'user', 0, 0, 'c83655336e37f0e5ccd2758f5e930f84', 'a9f4b785460ff913be517e8ce9840289', '2023-10-19 12:07:46', '2023-10-19 12:07:46', 0);
+
 
 -- 接口信息表
 create table if not exists `interface_info`
@@ -40,14 +40,13 @@ create table if not exists `interface_info`
     `id`             bigint                             not null auto_increment comment '接口id' primary key,
     `name`           varchar(256)                       not null comment '接口名称',
     `description`    varchar(256)                       null comment '接口描述',
-
     `url`            varchar(512)                       not null comment '接口地址',
     `requestParams`  text                               not null comment '请求参数',
     `requestHeader`  text                               null comment '请求头',
     `responseHeader` text                               null comment '响应头',
     `status`         int      default 0                 not null comment '接口状态（0-关闭，1-开启）',
     `method`         varchar(256)                       not null comment '请求类型',
-
+    `totalNum`       bigint   default 0                 not null comment '调用次数',
     `priceStar`      bigint   default 10                not null comment '星琼/100次',
     `priceDiamond`   bigint   default 1                 not null comment '钻石/100次',
     `userId`         bigint                             not null comment '创建人',
@@ -157,5 +156,10 @@ create table if not exists `settings`
     `updateTime`  datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
     `isDelete`    tinyint  default 0                 not null comment '是否删除(0-未删, 1-已删)'
 ) comment '基本设置信息表';
-INSERT INTO fyapi.settings (id, dailyStar, starDiamond, starImg, diamondImg, userImg, updateTime, isDelete) VALUES (1, 100, 10, 'https://upload-bbs.miyoushe.com/upload/2023/10/11/80823548/77bf8de438cf33605ed621a124cb4685_4075675081832803657.jpeg', 'https://cdn.pixabay.com/photo/2014/08/14/11/15/diamond-417896_640.png', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', '2023-10-13 13:20:44', 0);
+INSERT INTO fyapi.settings (id, dailyStar, starDiamond, starImg, diamondImg, userImg, updateTime, isDelete)
+VALUES (1, 100, 10,
+        'https://upload-bbs.miyoushe.com/upload/2023/10/11/80823548/77bf8de438cf33605ed621a124cb4685_4075675081832803657.jpeg',
+        'https://cdn.pixabay.com/photo/2014/08/14/11/15/diamond-417896_640.png',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png', '2023-10-13 13:20:44',
+        0);
 

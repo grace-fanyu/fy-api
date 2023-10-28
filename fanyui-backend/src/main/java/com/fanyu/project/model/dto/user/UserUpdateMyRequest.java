@@ -9,7 +9,11 @@ import lombok.Data;
  */
 @Data
 public class UserUpdateMyRequest implements Serializable {
-
+    /**
+     * id
+     *
+     */
+    private Long id;
     /**
      * 用户昵称
      */

@@ -44,4 +44,8 @@ public class UserInterfaceInfoQueryRequest extends PageRequest implements Serial
      */
     private Integer status;
 
+    private Long num = (getCurrent()-1)* getPageSize();
+
+    private Long page = getPageSize();
+
 }

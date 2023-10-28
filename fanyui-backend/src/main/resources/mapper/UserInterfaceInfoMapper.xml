@@ -25,4 +25,32 @@
         select interfaceInfoId, sum(totalNum) as totalNum from user_interface_info group by interfaceInfoId
         order by totalNum desc limit #{limit};
     </select>
+    <select id="listUserInterfaceInfoId" resultType="com.fanyu.project.model.vo.UserInterfaceInfoVO"
+            parameterType="com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest">
+        SELECT u.*,name as interfaceInfoName
+        FROM user_interface_info u
+        JOIN `interface_info` o on o.Id = interfaceInfoId
+        WHERE 1=1
+        <if test="id !=null ">
+            AND u.id=#{id}
+        </if>
+        <if test="userId !=null ">
+            AND u.userId=#{userId}
+        </if>
+        <if test="interfaceInfoId !=null ">
+            AND interfaceInfoId=#{interfaceInfoId}
+        </if>
+        <if test="totalNum !=null ">
+            AND u.totalNum=#{totalNum}
+        </if>
+        <if test="leftNum !=null ">
+            AND leftNum=#{leftNum}
+        </if>
+        <if test="status !=null ">
+            AND u.status=#{status}
+        </if>
+        <if test="num !=null and page != null">
+            LIMIT #{num},#{page};
+        </if>
+    </select>
 </mapper>

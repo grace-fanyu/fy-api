@@ -41,8 +41,8 @@ public class InterfaceInfoController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private FanyuiClient fanyuiClient;
+//    @Resource
+//    private FanyuiClient fanyuiClient;
 
     // region 增删改查
 

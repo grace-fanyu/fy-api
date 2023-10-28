@@ -14,11 +14,19 @@ public class OrderVO {
      * 调用用户 id
      */
     private Long userId;
+    /**
+     * 用户名
+     */
+    private String userName;
 
     /**
      * 接口 id
      */
     private Long interfaceInfoId;
+    /**
+     * 接口名
+     */
+    private String interfaceName;
 
     /**
      * 购买的调用次数

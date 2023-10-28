@@ -10,29 +10,26 @@ import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
 import com.fanyu.project.mapper.UserInterfaceInfoMapper;
 import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
-import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateRequest;
 import com.fanyu.project.model.vo.UserInterfaceInfoVO;
 import com.fanyu.project.service.UserInterfaceInfoService;
+import com.fanyu.project.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
-import java.sql.Wrapper;
 import java.util.List;
 
 @Service
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo> implements UserInterfaceInfoService {
 
     @Resource
-    InterfaceInfoServiceImpl interfaceInfoService;
+    private UserService userService;
 
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add) {
         if (userInterfaceInfo == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        Long id = userInterfaceInfo.getId();
         Long userId = userInterfaceInfo.getUserId();
         Long interfaceInfoId = userInterfaceInfo.getInterfaceInfoId();
 
@@ -95,18 +92,31 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
      */
     @Override
     public List<UserInterfaceInfoVO> userInterfaceVOPage(UserInterfaceInfoQueryRequest userInterfaceInfoQueryRequest, HttpServletRequest request) {
-        return null;
+        //判空
+        if (userInterfaceInfoQueryRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        userInterfaceInfoQueryRequest.setUserId(user.getId());
+        return this.baseMapper.listUserInterfaceInfoId(userInterfaceInfoQueryRequest);
     }
 
+
     /**
-     * 接口调用次数修改 TODO
+     * 创建用户调用信息
      *
-     * @param userInterfaceInfoUpdateRequest 接口调用更新请求
-     * @param request                        请求参数
-     * @return 是否更新成功
+     * @param userInterfaceInfo 创建信息
+     * @return 接口调用信息id
      */
     @Override
-    public Boolean userUpdateUserInterfaceInfo(UserInterfaceInfoUpdateRequest userInterfaceInfoUpdateRequest, HttpServletRequest request) {
-        return null;
+    public Long createUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo) {
+
+        boolean result = this.save(userInterfaceInfo);
+        if (!result) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR);
+        }
+        return userInterfaceInfo.getId();
     }
+
+
 }

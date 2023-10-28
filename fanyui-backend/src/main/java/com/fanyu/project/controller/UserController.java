@@ -10,8 +10,10 @@ import com.fanyu.project.common.ResultUtils;
 import com.fanyu.project.constant.UserConstant;
 import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
+import com.fanyu.project.model.dto.order.OrderUpdateRequest;
 import com.fanyu.project.model.dto.user.*;
 import com.fanyu.project.model.vo.LoginUserVO;
+import com.fanyu.project.model.vo.OrderVO;
 import com.fanyu.project.model.vo.UserVO;
 import com.fanyu.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +38,8 @@ public class UserController {
     private UserService userService;
 
 
-
-    // region 登录注册相关
-
     /**
-     * 用户账号注册
-     *
+     * 用户平台账号注册
      * @param userRegisterRequest 用户账号注册信息
      * @return BaseResponse
      */
@@ -51,16 +49,16 @@ public class UserController {
         if (userRegisterRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        String userName = userRegisterRequest.getUserName();
         String userAccount = userRegisterRequest.getUserAccount();
         String userPassword = userRegisterRequest.getUserPassword();
         String checkPassword = userRegisterRequest.getCheckPassword();
 
-        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+        if (StringUtils.isAnyBlank(userName,userAccount, userPassword, checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
-
-        long result = userService.userRegister(userAccount, userPassword, checkPassword);
+        long result = userService.userRegister(userName,userAccount, userPassword, checkPassword);
         return ResultUtils.success(result);
     }
 
@@ -76,11 +74,11 @@ public class UserController {
         if (userRegisterRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-
+        String userName = userRegisterRequest.getUserName();
         String email = userRegisterRequest.getEmail();
 
         String code = userRegisterRequest.getCode();
-        if (StringUtils.isAnyBlank(email,code)) {
+        if (StringUtils.isAnyBlank(userName,email,code)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         boolean verifyEmail = userService.verifyEmail(email, code);
@@ -88,11 +86,12 @@ public class UserController {
             ResultUtils.error(ErrorCode.NOT_FOUND_ERROR,"验证码错误！");
         }
 
-        long result = userService.userRegister(email);
+        long result = userService.userRegister(userName,email);
         return ResultUtils.success(result);
     }
+
     /**
-     * 用户登录
+     * 用户平台账号登录
      *
      * @param userLoginRequest 用户登录信息
      * @param request request
@@ -118,7 +117,6 @@ public class UserController {
      * @param request HttpServletRequest
      * @return LoginUserVO
      */
-
     @PostMapping("/login/email")
     public BaseResponse<LoginUserVO> emailLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
@@ -131,24 +129,22 @@ public class UserController {
     }
 
     /**
-     *
-     * @param emailRequest 邮箱
+     * 根据邮箱信息发送验证码
+     * @param email 邮箱
      * @param request HttpServletRequest
      * @return 邮箱发送状态
      */
-    @PostMapping("/email")
-    public BaseResponse<String> sendEmail(@RequestBody EmailRequest emailRequest ,HttpServletRequest request){
-        if (emailRequest == null){
+    @GetMapping("/email")
+    public BaseResponse<String> sendEmail(String email ,HttpServletRequest request){
+        if (StringUtils.isAnyBlank(email)){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        String email = emailRequest.getEmail();
-        System.out.println(email);
+        //String email = emailRequest.getEmail();
+        //System.out.println(email);
 
         String message = userService.sendEmail(email);
         return ResultUtils.success(message);
     }
-
-
 
     /**
      * 用户注销
@@ -300,17 +296,71 @@ public class UserController {
      * @return BaseResponse
      */
     @PostMapping("/update/my")
-    public BaseResponse<Boolean> updateMyUser(@RequestBody UserUpdateMyRequest userUpdateMyRequest,
+    public BaseResponse<UserVO> updateMyUser(@RequestBody UserUpdateMyRequest userUpdateMyRequest,
             HttpServletRequest request) {
         if (userUpdateMyRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User loginUser = userService.getLoginUser(request);
-        User user = new User();
-        BeanUtils.copyProperties(userUpdateMyRequest, user);
-        user.setId(loginUser.getId());
-        boolean result = userService.updateById(user);
-        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        return ResultUtils.success(true);
+        if (userUpdateMyRequest.getId() <= 0){
+            User user = userService.getLoginUser(request);
+            userUpdateMyRequest.setId(user.getId());
+        }
+         UserVO userVO= userService.updateMyUser(userUpdateMyRequest);
+
+        return ResultUtils.success(userVO);
+    }
+    /**
+     * 更新个人凭证
+     *
+     * @param request HttpServletRequest
+     * @return BaseResponse
+     */
+    @PostMapping("/update/voucher")
+    public BaseResponse<UserVO> updateVoucher(HttpServletRequest request) {
+        if (request == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+
+        User user = userService.getLoginUser(request);
+
+
+        UserVO userVO= userService.updateVoucher(user);
+
+        return ResultUtils.success(userVO);
+    }
+
+    /**
+     * 兑换星琼
+     * @param exchangeStarRequest 兑换信息
+     * @param request 请求
+     * @return  UserVO
+     */
+    @PostMapping("/exchange")
+    public BaseResponse<UserVO> ExchangeStar(@RequestBody ExchangeRequest exchangeStarRequest, HttpServletRequest request) {
+        if (exchangeStarRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        exchangeStarRequest.setId(user.getId());
+        UserVO userVO = userService.exchangeStar(exchangeStarRequest);
+        return ResultUtils.success(userVO);
+    }
+    //topUp
+
+    /**
+     * 充值钻石
+     * @param exchangeRequest  充值信息
+     * @param request HttpServletRequest
+     * @return UserVO
+     */
+    @PostMapping("/recharge")
+    public BaseResponse<UserVO> RechargeDiamond(@RequestBody ExchangeRequest exchangeRequest, HttpServletRequest request) {
+        if (exchangeRequest == null|| exchangeRequest.getUserDiamond() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        exchangeRequest.setId(user.getId());
+        UserVO userVO = userService.rechargeDiamond(exchangeRequest);
+        return ResultUtils.success(userVO);
     }
 }

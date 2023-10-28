@@ -33,5 +33,5 @@ public class InterfaceInfoListVO {
     /**
      * 调用次数
      */
-    private Integer totalNum;
+    private Long totalNum;
 }

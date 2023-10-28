@@ -39,11 +39,6 @@ public class OrderController {
     @Resource
     private UserService userService;
 
-
-
-    // region 登录注册相关
-
-
     /**
      * 用户下订单买接口调用次数
      *
@@ -62,18 +57,12 @@ public class OrderController {
         return ResultUtils.success(createOrder);
     }
 
-
-
-
-
-
     /**
-     * 订单取消
-     *
+     * 订单删除
      * @param request HttpServletRequest
      * @return BaseResponse
      */
-    @PostMapping("/logout")
+    @PostMapping("/remove")
     public BaseResponse<Boolean> orderLogout(@RequestBody DeleteRequest deleteRequest,HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -81,8 +70,6 @@ public class OrderController {
         boolean result = orderService.removeById(deleteRequest.getId());
         return ResultUtils.success(result);
     }
-
-
 
     /**
      * 根据订单 id 获取当前订单详细信息
@@ -99,6 +86,21 @@ public class OrderController {
         return ResultUtils.success(orderService.getOrderVO(order));
     }
     /**
+     * 根据订单 id 确认订单
+     *
+     * @param id 订单id
+     * @return BaseResponse
+     */
+    @GetMapping("/confirm/order")
+    public BaseResponse<OrderVO> confirmOrderById(long id) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+
+        return ResultUtils.success(orderService.confirmOrderById(id));
+    }
+
+    /**
      * 分页获取列表
      *
      * @param orderQueryRequest InterfaceInfoQueryRequest
@@ -114,9 +116,6 @@ public class OrderController {
 
         return ResultUtils.success(orderVOList);
     }
-
-
-    // region 增删改查
 
     /**
      * 创建订单
@@ -135,23 +134,6 @@ public class OrderController {
         orderAddRequest.setUserId(user.getId());
         long addOrder = orderService.addOrder(orderAddRequest);
         return ResultUtils.success(addOrder);
-    }
-
-    /**
-     * 删除订单
-     *
-     * @param deleteRequest DeleteRequest
-     * @param request HttpServletRequest
-     * @return BaseResponse
-     */
-    @PostMapping("/delete")
-    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Boolean> deleteOrder(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
-        if (deleteRequest == null || deleteRequest.getId() <= 0) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        boolean b = orderService.removeById(deleteRequest.getId());
-        return ResultUtils.success(b);
     }
 
     /**
@@ -192,8 +174,6 @@ public class OrderController {
         ThrowUtils.throwIf(order == null, ErrorCode.NOT_FOUND_ERROR);
         return ResultUtils.success(order);
     }
-
-
 
     /**
      * 分页获取订单列表（仅管理员）

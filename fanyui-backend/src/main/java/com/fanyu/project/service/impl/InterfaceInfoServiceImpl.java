@@ -100,6 +100,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
 		if (status == null){
 			interfaceInfoQueryRequest.setStatus(1);
 		}
+		interfaceInfoQueryRequest.setName(SqlUtils.setWildcard(interfaceInfoQueryRequest.getName()));
 		return this.baseMapper.listInterfaceInfo(interfaceInfoQueryRequest);
 	}
 

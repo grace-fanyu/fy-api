@@ -1,5 +1,7 @@
 package com.fanyu.project.utils;
 
+import com.fanyu.project.common.ErrorCode;
+import com.fanyu.project.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -19,5 +21,12 @@ public class SqlUtils {
             return false;
         }
         return !StringUtils.containsAny(sortField, "=", "(", ")", " ");
+    }
+
+    public static String setWildcard(String str){
+        if (StringUtils.isAnyBlank(str)) {
+            return null;
+        }
+        return "%"+str+"%";
     }
 }

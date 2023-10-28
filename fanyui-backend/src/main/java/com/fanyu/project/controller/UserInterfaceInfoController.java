@@ -12,11 +12,9 @@ import com.fanyu.project.common.ResultUtils;
 import com.fanyu.project.constant.CommonConstant;
 import com.fanyu.project.constant.UserConstant;
 import com.fanyu.project.exception.BusinessException;
-import com.fanyu.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoAddRequest;
 import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
 import com.fanyu.project.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateRequest;
-import com.fanyu.project.model.vo.InterfaceInfoVO;
 import com.fanyu.project.model.vo.UserInterfaceInfoVO;
 import com.fanyu.project.service.UserInterfaceInfoService;
 import com.fanyu.project.service.UserService;
@@ -44,6 +42,29 @@ public class UserInterfaceInfoController {
     @Resource
     private UserService userService;
 
+    //接口调用信息创建
+
+    /**
+     * 创建用户接口调用信息
+     * @param userInterfaceInfoAddRequest 添加信息
+     * @param request
+     * @return
+     */
+    @PostMapping("/create")
+    public BaseResponse<Long> createUserInterfaceInfo(@RequestBody UserInterfaceInfoAddRequest userInterfaceInfoAddRequest, HttpServletRequest request) {
+        if (userInterfaceInfoAddRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        UserInterfaceInfo userInterfaceInfo = new UserInterfaceInfo();
+        BeanUtils.copyProperties(userInterfaceInfoAddRequest, userInterfaceInfo);
+        // 校验
+        User loginUser = userService.getLoginUser(request);
+        userInterfaceInfo.setUserId(loginUser.getId());
+        userInterfaceInfoService.validUserInterfaceInfo(userInterfaceInfo, true);
+        long newUserInterfaceInfoId = userInterfaceInfoService.createUserInterfaceInfo(userInterfaceInfo);
+
+        return ResultUtils.success(newUserInterfaceInfoId);
+    }
     /**
      * 接口调用剩余次数查询
      *
@@ -73,8 +94,13 @@ public class UserInterfaceInfoController {
      * @return BaseResponse
      */
     @GetMapping("/list/page")
-    public BaseResponse<List<UserInterfaceInfoVO>> listInterfaceInfoByPage(UserInterfaceInfoQueryRequest userInterfaceInfoQueryRequest, HttpServletRequest request) {
+    public BaseResponse<List<UserInterfaceInfoVO>> listUserInterfaceInfo(UserInterfaceInfoQueryRequest userInterfaceInfoQueryRequest, HttpServletRequest request) {
         if (userInterfaceInfoQueryRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        long size = userInterfaceInfoQueryRequest.getPageSize();
+        // 限制爬虫
+        if (size > 50) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         List<UserInterfaceInfoVO> userInterfaceInfoVO = userInterfaceInfoService.userInterfaceVOPage(userInterfaceInfoQueryRequest, request);

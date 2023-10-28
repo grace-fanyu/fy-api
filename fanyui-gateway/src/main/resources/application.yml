@@ -34,5 +34,5 @@ dubbo:
     port: 20891
   registry:
     id: nacos-registry
-    address: nacos://124.70.61.81:8848
+    address: nacos://39.101.66.101:8848
 

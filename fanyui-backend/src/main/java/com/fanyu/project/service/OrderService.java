@@ -56,4 +56,11 @@ public interface OrderService extends IService<Order> {
      * @return 订单列表
      */
     List<OrderVO> orderVOPage(OrderQueryRequest orderQueryRequest, HttpServletRequest request);
+
+    /**
+     * 订单确认
+     * @param id 订单id
+     * @return OrderVO
+     */
+    OrderVO confirmOrderById(long id);
 }

@@ -15,6 +15,8 @@ import com.fanyu.project.model.dto.order.OrderQueryRequest;
 import com.fanyu.project.model.vo.OrderVO;
 import com.fanyu.project.service.InterfaceInfoService;
 import com.fanyu.project.service.OrderService;
+import com.fanyu.project.service.UserInterfaceInfoService;
+import com.fanyu.project.service.UserService;
 import com.fanyu.project.utils.SqlUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 
     @Resource
     private InterfaceInfoService interfaceInfoService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private UserInterfaceInfoService userInterfaceInfoService;
 
     /**
      * 获取脱敏订单
@@ -45,7 +51,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
     @Override
     public OrderVO getOrderVO(Order order) {
         OrderVO orderVO = new OrderVO();
+        Long userId = order.getUserId();
+        Long interfaceInfoId = order.getInterfaceInfoId();
+        String userName = userService.getById(userId).getUserName();
+        String interfaceName = interfaceInfoService.getById(interfaceInfoId).getName();
         BeanUtils.copyProperties(order, orderVO);
+        orderVO.setInterfaceName(interfaceName);
+        orderVO.setUserName(userName);
         return orderVO;
     }
 
@@ -151,6 +163,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         return this.baseMapper.listOrder(orderQueryRequest);
     }
 
+    /**
+     * 订单确认
+     *
+     * @param id 订单id
+     * @return OrderVO
+     */
+    @Override
+    public OrderVO confirmOrderById(long id) {
+        Order order = this.getById(id);
+        order.setStatus(1);
+
+        return null;
+    }
 
 
 }

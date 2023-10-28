@@ -16,17 +16,18 @@
             <result property="method" column="method" jdbcType="VARCHAR"/>
             <result property="priceStar" column="priceStar" jdbcType="BIGINT"/>
             <result property="priceDiamond" column="priceDiamond" jdbcType="BIGINT"/>
+            <result property="totalNum" column="totalNum" jdbcType="BIGINT"/>
             <result property="userId" column="userId" jdbcType="BIGINT"/>
             <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,name,description,
+    <sql id="Base_Column_List" >
+        `id`,`name`,`description`,
         url,requestParams,requestHeader,
-        responseHeader,status,method,
-        priceStar,priceDiamond,userId,
+        responseHeader,`status`,method,
+        priceStar,priceDiamond,totalNum,userId,
         createTime,updateTime,isDelete
     </sql>
     <select id="listInterfaceInfo"  resultType="com.fanyu.project.model.vo.InterfaceInfoListVO"
@@ -38,7 +39,7 @@
                 AND id=#{id}
             </if>
             <if test="name !=null and name !=''">
-                AND name=#{name}
+                AND name like #{name}
             </if>
             <if test="description !=null and description !=''">
                 AND description like #{description}

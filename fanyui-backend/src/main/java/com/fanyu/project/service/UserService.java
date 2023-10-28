@@ -3,8 +3,7 @@ package com.fanyu.project.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fanyu.fanyucommon.model.entity.User;
-import com.fanyu.project.model.dto.user.UserAddRequest;
-import com.fanyu.project.model.dto.user.UserQueryRequest;
+import com.fanyu.project.model.dto.user.*;
 import com.fanyu.project.model.vo.LoginUserVO;
 import com.fanyu.project.model.vo.UserVO;
 
@@ -27,14 +26,14 @@ public interface UserService extends IService<User> {
      * @param checkPassword 校验密码
      * @return 新用户 id
      */
-    long userRegister(String userAccount, String userPassword, String checkPassword);
+    long userRegister(String userName,String userAccount, String userPassword, String checkPassword);
 
     /**
      * 用户注册
      * @param email
      * @return
      */
-    long userRegister(String email);
+    long userRegister(String userName,String email);
 
     /**
      * 发送邮箱验证码
@@ -152,4 +151,32 @@ public interface UserService extends IService<User> {
      * @param userAddRequest 用户创建信息
      */
     long addUser(UserAddRequest userAddRequest);
+
+    /**
+     * 更新自己的信息
+     * @param userUpdateMyRequest  UserUpdateMyRequest
+     * @return UserVO
+     */
+    UserVO updateMyUser(UserUpdateMyRequest userUpdateMyRequest);
+
+    /**
+     * 用户修改凭证
+     * @param user 用户信息
+     * @return UserVO
+     */
+    UserVO updateVoucher(User user);
+
+    /**
+     * 钻石兑换星琼
+     * @param exchangeStarRequest  兑换信息
+     * @return UserVO
+     */
+    UserVO exchangeStar(ExchangeRequest exchangeStarRequest);
+
+    /**
+     * 充值钻石
+     * @param exchangeRequest 充值信息
+     * @return 用户脱敏信息
+     */
+    UserVO rechargeDiamond(ExchangeRequest exchangeRequest);
 }

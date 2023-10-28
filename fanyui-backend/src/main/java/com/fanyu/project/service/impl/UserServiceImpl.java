@@ -13,8 +13,10 @@ import com.fanyu.project.constant.UserConstant;
 import com.fanyu.project.exception.BusinessException;
 import com.fanyu.project.exception.ThrowUtils;
 import com.fanyu.project.mapper.UserMapper;
+import com.fanyu.project.model.dto.user.ExchangeRequest;
 import com.fanyu.project.model.dto.user.UserAddRequest;
 import com.fanyu.project.model.dto.user.UserQueryRequest;
+import com.fanyu.project.model.dto.user.UserUpdateMyRequest;
 import com.fanyu.project.model.enums.UserRoleEnum;
 import com.fanyu.project.model.vo.LoginUserVO;
 import com.fanyu.project.model.vo.UserVO;
@@ -68,9 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     @Override
-    public long userRegister(String userAccount, String userPassword, String checkPassword) {
+    public long userRegister(String userName,String userAccount, String userPassword, String checkPassword) {
         // 1. 校验
-        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+        if (StringUtils.isAnyBlank(userName,userAccount, userPassword, checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
         }
         if (userAccount.length() < 4) {
@@ -101,6 +103,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 3. 插入数据
 
             User user = new User();
+            user.setUserName(userName);
             user.setUserAccount(userAccount);
             user.setUserPassword(encryptPassword);
             user.setAccessKey(accessKey);
@@ -123,17 +126,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return
      */
     @Override
-    public long userRegister(String email) {
+    public long userRegister(String userName,String email) {
         // 1. 校验
-        if (StringUtils.isAnyBlank(email)) {
+        if (StringUtils.isAnyBlank(userName,email)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
         }
         if (sendMailUtil.isNotEmail(email)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "邮箱格式不对");
         }
-
-
-
         synchronized (email.intern()) {
             // 账户不能重复
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -150,6 +150,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 3. 插入数据
 
             User user = new User();
+            user.setUserName(userName);
             user.setEmail(email);
             user.setAccessKey(accessKey);
             user.setSecretKey(secretKey);
@@ -188,13 +189,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String code = sendMailUtil.generateVerifyCode(6);
         // 邮件对象（邮件模板，根据自身业务修改）
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setSubject("凡雨API网站邮箱验证码");
-        message.setText("尊敬的用户您好!\n\n感谢您注册凡雨API。\n\n尊敬的: " + email + "您的校验验证码为: " + code + ",有效期5分钟，请不要把验证码信息泄露给其他人,如非本人请勿操作");
+        message.setSubject("Fy-API 接口开放平台邮箱验证码");
+        message.setText("尊敬的用户您好!\n感谢您使用 Fy-API。\n尊敬的: " + email + "您的校验验证码为: \n" + code + "\n有效期5分钟，请不要把验证码信息泄露给其他人,如非本人请勿操作");
         message.setTo(email);
 
         try {
             // 对方看到的发送人（发件人的邮箱，根据实际业务进行修改，一般填写的是企业邮箱）
-            message.setFrom(new InternetAddress(MimeUtility.encodeText("凡雨API官方") + "<1143725742@qq.com>").toString());
+            message.setFrom(new InternetAddress(MimeUtility.encodeText("Fy-API") + "<1143725742@qq.com>").toString());
             // 发送邮件
             javaMailSender.send(message);
             // 将生成的验证码存入Redis数据库中，并设置过期时间
@@ -285,12 +286,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (currentUser == null || currentUser.getId() == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
-        // 从数据库查询（追求性能的话可以注释，直接走缓存）
-//        long userId = currentUser.getId();
-//        currentUser = this.getById(userId);
-//        if (currentUser == null) {
-//            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
-//        }
+         //从数据库查询（追求性能的话可以注释，直接走缓存）
+        long userId = currentUser.getId();
+        currentUser = this.getById(userId);
+        if (currentUser == null) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        }
         return currentUser;
     }
 
@@ -409,6 +410,92 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         boolean result = this.save(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return user.getId();
+    }
+
+    /**
+     * 更新自己的信息
+     *
+     * @param userUpdateMyRequest UserUpdateMyRequest
+     * @return UserVO
+     */
+    @Override
+    public UserVO updateMyUser(UserUpdateMyRequest userUpdateMyRequest) {
+        User user = new User();
+        BeanUtils.copyProperties(userUpdateMyRequest, user);
+        boolean result = this.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return this.getUserVO(user);
+    }
+
+    /**
+     * 用户修改凭证
+     *
+     * @param user 用户信息
+     * @return UserVO
+     */
+    @Override
+    public UserVO updateVoucher(User user) {
+
+        String userAccount = user.getUserAccount();
+        String email = user.getEmail();
+        if (StringUtils.isAllBlank(userAccount,email)){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号异常");
+        }
+        String accessKey = user.getAccessKey();
+        String secretKey = user.getSecretKey();
+        if (userAccount != null ){
+            //给用户分配调用接口的公钥和私钥ak,sk，保证复杂的同时要保证唯一
+            accessKey = DigestUtil.md5Hex(SALT+userAccount+ RandomUtil.randomNumbers(5));
+            secretKey = DigestUtil.md5Hex(SALT+userAccount+ RandomUtil.randomNumbers(8));
+        }
+        if (userAccount == null & email !=null){
+            accessKey = DigestUtil.md5Hex(SALT+email+ RandomUtil.randomNumbers(5));
+            secretKey = DigestUtil.md5Hex(SALT+email+ RandomUtil.randomNumbers(8));
+
+        }
+        user.setAccessKey(accessKey);
+        user.setSecretKey(secretKey);
+        boolean result = this.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+
+        return this.getUserVO(user);
+    }
+
+    /**
+     * 钻石兑换星琼
+     *
+     * @param exchangeStarRequest 兑换信息
+     * @return UserVO
+     */
+    @Override
+    public UserVO exchangeStar(ExchangeRequest exchangeStarRequest) {
+        User user = this.getById(exchangeStarRequest.getId());
+        Settings settings = settingsService.getSettings();
+        Long starDiamond = settings.getStarDiamond();
+        Long userDiamond = exchangeStarRequest.getUserDiamond();
+
+        Long userStar = (userDiamond*starDiamond)+user.getUserStar();
+        userDiamond = user.getUserDiamond() - userDiamond;
+        user.setUserStar(userStar);
+        user.setUserDiamond(userDiamond);
+        boolean result = this.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return this.getUserVO(user);
+    }
+
+    /**
+     * 充值钻石
+     *
+     * @param exchangeRequest 充值信息
+     * @return 用户脱敏信息
+     */
+    @Override
+    public UserVO rechargeDiamond(ExchangeRequest exchangeRequest) {
+        User user = this.getById(exchangeRequest.getId());
+        user.setUserDiamond(user.getUserDiamond()+exchangeRequest.getUserDiamond());
+        boolean result = this.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return this.getUserVO(user);
     }
 
     /**

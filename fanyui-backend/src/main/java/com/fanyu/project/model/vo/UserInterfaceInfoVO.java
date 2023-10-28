@@ -21,10 +21,19 @@ public class UserInterfaceInfoVO {
     private Long userId;
 
     /**
+     * 用户名字
+     */
+    private String userName;
+
+    /**
      * 接口 id
      */
     private Long interfaceInfoId;
 
+    /**
+     * 接口名称
+     */
+    private String interfaceInfoName;
     /**
      * 总调用次数
      */
